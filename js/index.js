@@ -1,14 +1,6 @@
-'use strict'
-const users = [
-  { name: "Mango", active: true },
-  { name: "Poly", active: false },
-  { name: "Ajax", active: true },
-  { name: "Lux", active: false },
-];
 
 //1
 const delay = (ms) => {
-  // Твой код
   const promise = new Promise((resolve) => {
     setTimeout(() => {
       resolve(ms);
@@ -22,6 +14,13 @@ delay(1000).then(logger);
 delay(1500).then(logger);
 
 //2
+const users = [
+  { name: "Mango", active: true },
+  { name: "Poly", active: false },
+  { name: "Ajax", active: true },
+  { name: "Lux", active: false },
+];
+
 const toggleUserState = (allUsers, userName) => {
   const updatedUsers = allUsers.map((user) =>
     user.name === userName ? { ...user, active: !user.active } : user
@@ -36,6 +35,8 @@ const logger_2 = (updatedUsers) => console.table(updatedUsers);
 toggleUserState(users, "Mango").then(logger_2);
 toggleUserState(users, "Lux").then(logger_2);
 toggleUserState(users, "Ajax").then(logger_2);
+
+
 
 //3
 
@@ -63,7 +64,6 @@ const logSuccess = ([id, time]) => {
 const logError = id => {
   console.warn(`Error processing transaction ${id}. Please try again later.`);
 };
-
 
 makeTransaction({ id: 70, amount: 150 })
   .then(logSuccess)
