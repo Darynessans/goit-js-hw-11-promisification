@@ -23,14 +23,19 @@ delay(1500).then(logger);
 
 //2
 const toggleUserState = (allUsers, userName) => {
-  return Promise.resolve(allUsers.map(user =>
-      user.name === userName ? { ...user, active: !user.active } : user));
-  };
-  
-  const logger = resolve => console.table(resolve);
+  const updatedUsers = allUsers.map((user) =>
+    user.name === userName ? { ...user, active: !user.active } : user
+  );
+  const promise = new Promise((resolve) => {
+    resolve(updatedUsers);
+  });
+  return promise;
+};
 
-  toggleUserState(users, 'Mango').then(logger);
-  toggleUserState(users, 'Lux').then(logger);
+const logger_2 = (updatedUsers) => console.table(updatedUsers);
+toggleUserState(users, "Mango").then(logger_2);
+toggleUserState(users, "Lux").then(logger_2);
+toggleUserState(users, "Ajax").then(logger_2);
 
 //3
 
